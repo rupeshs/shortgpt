@@ -28,7 +28,7 @@ pub fn parse_arguments() -> clap::ArgMatches {
     let matches = Command::new("shortgpt")
         .version(version)
         .author("Rupesh Sreeraman. <exmplayer.dev@gmail.com>")
-        .about("Short and Sweet: Ask shortGPT for Instant and Concise Details!")
+        .about("Short and Sweet: Ask shortGPT for Instant and Concise Answers!")
         .arg(Arg::new("question").required(true))
         .arg(
             Arg::new("long")

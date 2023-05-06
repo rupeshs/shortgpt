@@ -49,7 +49,7 @@ fn main() {
     if long_text {
         println!("{}", "Running in long text mode!".cyan());
     }
-    println!("{} : {}", "Question:".magenta(), query.bright_green());
+    println!("{}: {}", "Question".yellow(), query.bright_green());
     let result = std::env::var("OPENAI_API_KEY");
     match result {
         Ok(openai_api_key) => {
