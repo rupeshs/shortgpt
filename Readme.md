@@ -3,6 +3,7 @@
 shortgpt is a AI assistant console app for Windows/Linux/MacOS we can run it as command . It answers questions with less than 50 words,use GPT 3/4 from the terminal.
 
 
+
 ## Features 
  - Ask shortgpt for instant and concise answers
  - Add shortgpt to PATH environment and use it as command
