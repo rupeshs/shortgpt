@@ -46,8 +46,6 @@ fn main() {
     let query = matches.get_one::<String>("question").unwrap();
     let gpt_model = matches.get_one::<String>("model").unwrap();
     let temperature: f32 = *matches.get_one("temperature").unwrap();
-    println!("{}", temperature);
-
     if long_text {
         println!("{}", "Running in long text mode!".yellow());
     }
