@@ -22,11 +22,11 @@
     SOFTWARE.
 */
 use crate::models::{GptChatOutput, GptInput, Message};
+use crate::prompts::{get_long_prompt, get_short_prompt};
 use reqwest::header::{HeaderMap, HeaderValue, ACCEPT, AUTHORIZATION, CONTENT_TYPE};
 use reqwest::{blocking::Client, StatusCode};
 
 const OPENAI_GPT_CHAT_API_URL: &str = "https://api.openai.com/v1/chat/completions";
-const MAX_WORDS: u32 = 50;
 
 fn get_authentication_bearer(api_key: &str) -> String {
     let auth_bearer = format!("Bearer {}", api_key);
@@ -56,29 +56,6 @@ fn get_headers(auth_bearer: &str) -> HeaderMap {
     headers
 }
 
-fn get_prompt(query: &str) -> String {
-    let prompt = format!(
-        r#"
-    You are an expert assistant called shortgpt,your task is to give clear and correct answer to user's question.
-    You can use maximum {} words.The generated text should be formatted with markdown.
-    {}
-    "#,
-        MAX_WORDS, query
-    );
-    prompt
-}
-fn get_long_prompt(query: &str) -> String {
-    let prompt = format!(
-        r#"
-    You are an expert assistant called shortgpt,your task is to give clear and correct answer to user's question.
-    The generated text should be formatted with markdown.
-    {}
-    "#,
-        query
-    );
-    prompt
-}
-
 pub fn ask(
     model: &str,
     api_key: &str,
@@ -91,7 +68,7 @@ pub fn ask(
     if is_long {
         prompt = get_long_prompt(query);
     } else {
-        prompt = get_prompt(query);
+        prompt = get_short_prompt(query);
     }
 
     let gpt_input = get_gpt_input(model, &prompt, temperature);

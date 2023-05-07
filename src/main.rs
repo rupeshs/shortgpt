@@ -30,6 +30,7 @@ mod completion_context;
 mod gpt_chat_completion;
 mod models;
 mod render;
+mod prompts;
 
 use colored::*;
 
