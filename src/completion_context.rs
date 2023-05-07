@@ -28,9 +28,16 @@ use colored::*;
 use spinoff::{spinners, Color, Spinner};
 use std::time::Instant;
 
-pub fn do_completion(gpt_model: &str, openai_api_key: &str, query: &str, long_text: bool) {
+pub fn do_completion(
+    gpt_model: &str,
+    openai_api_key: &str,
+    query: &str,
+    long_text: bool,
+    temperature: f32,
+) {
     let mut spinner = Spinner::new(spinners::Line, "Thinking...", Color::Green);
-    let result = gpt_chat_completion::ask(gpt_model, &openai_api_key, query, long_text);
+    let result =
+        gpt_chat_completion::ask(gpt_model, &openai_api_key, query, long_text, temperature);
     let start_time = Instant::now();
     match result {
         Ok(gpt_chat_output) => {

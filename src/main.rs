@@ -45,16 +45,22 @@ fn main() {
     let long_text = matches.get_flag("long");
     let query = matches.get_one::<String>("question").unwrap();
     let gpt_model = matches.get_one::<String>("model").unwrap();
+    let temperature: f32 = *matches.get_one("temperature").unwrap();
+    println!("{}", temperature);
 
     if long_text {
-        println!("{}", "Running in long text mode!".cyan());
+        println!("{}", "Running in long text mode!".yellow());
     }
-    println!("{}: {}", "Question".yellow(), query.bright_green());
+    println!("{}: {}", "Question".cyan(), query.bright_green());
     let result = std::env::var("OPENAI_API_KEY");
     match result {
-        Ok(openai_api_key) => {
-            completion_context::do_completion(gpt_model, &openai_api_key, query, long_text)
-        }
+        Ok(openai_api_key) => completion_context::do_completion(
+            gpt_model,
+            &openai_api_key,
+            query,
+            long_text,
+            temperature,
+        ),
         Err(_) => {
             let error_msg = "Error: Please set OPENAI_API_KEY environment variable!".red();
             println!("🛑 {}", error_msg);

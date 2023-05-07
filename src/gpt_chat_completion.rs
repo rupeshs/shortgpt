@@ -33,9 +33,8 @@ fn get_authentication_bearer(api_key: &str) -> String {
     auth_bearer
 }
 
-fn get_gpt_input(model: &str, prompt: &str) -> GptInput {
+fn get_gpt_input(model: &str, prompt: &str, temperature: f32) -> GptInput {
     let model = String::from(model);
-    let temperature = 0.7;
     let messages = vec![Message {
         role: String::from("user"),
         content: String::from(prompt),
@@ -85,6 +84,7 @@ pub fn ask(
     api_key: &str,
     query: &str,
     is_long: bool,
+    temperature: f32,
 ) -> Result<GptChatOutput, String> {
     let auth_bearer = get_authentication_bearer(api_key);
     let prompt;
@@ -94,7 +94,7 @@ pub fn ask(
         prompt = get_prompt(query);
     }
 
-    let gpt_input = get_gpt_input(model, &prompt);
+    let gpt_input = get_gpt_input(model, &prompt, temperature);
     let request_body = serde_json::to_string(&gpt_input).unwrap();
 
     let headers = get_headers(&auth_bearer);

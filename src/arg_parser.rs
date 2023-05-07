@@ -21,7 +21,7 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 */
-use clap::{Arg, ArgAction, Command};
+use clap::{value_parser, Arg, ArgAction, Command};
 
 pub fn parse_arguments() -> clap::ArgMatches {
     let version = env!("CARGO_PKG_VERSION");
@@ -31,18 +31,24 @@ pub fn parse_arguments() -> clap::ArgMatches {
         .about("Short and Sweet: Ask shortGPT for Instant and Concise Answers!")
         .arg(Arg::new("question").required(true))
         .arg(
-            Arg::new("long")
-                .short('l')
-                .long("long")
-                .help("Turn on long text mode (lengthy output from GPT)")
-                .action(ArgAction::SetTrue),
-        )
-        .arg(
             Arg::new("model")
                 .short('m')
                 .long("model")
                 .help("GPT model (gpt-4, gpt-4-0314, gpt-4-32k, gpt-4-32k-0314, gpt-3.5-turbo, gpt-3.5-turbo-0301)")
                 .default_value("gpt-3.5-turbo")
+        ).arg(
+            Arg::new("temperature")
+                .short('t')
+                .long("temperature")
+                .value_parser(value_parser!(f32))
+                .help("Sampling temperature to use, between 0 and 2")
+                .default_value("0.7")
+        ).arg(
+            Arg::new("long")
+                .short('l')
+                .long("long")
+                .help("Turn on long text mode (50 words output limit off)")
+                .action(ArgAction::SetTrue),
         )
         .get_matches();
 
