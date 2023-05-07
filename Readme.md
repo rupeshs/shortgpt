@@ -13,6 +13,10 @@ shortgpt is a AI assistant console app for Windows/Linux/MacOS we can run it as 
  - Use -l to enable long text mode
 
 ## Screenshots
+#### Windows
+![shortgot windows](https://raw.githubusercontent.com/rupeshs/shortgpt/main/images/shortgpt-win.PNG)
+#### Linux 
+
 ![shortgot linux](https://raw.githubusercontent.com/rupeshs/shortgpt/main/images/shortgpt_demo.PNG)
 
 ## Usage and Options
