@@ -1,6 +1,6 @@
 # shortgpt 
 
-shortgpt is a AI assistant console app for Windows/Linux/MacOS we can run it as command . It answers questions with less than 50 words,use GPT 3/4 from the terminal.
+shortgpt is an AI assistant console app for Windows/Linux/MacOS we can run it as command . It answers questions with less than 50 words,use GPT 3/4 from the terminal.
 
 ![shortgot](https://raw.githubusercontent.com/rupeshs/shortgpt/main/images/shortgpt.png)
 
